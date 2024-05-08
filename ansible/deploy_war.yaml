@@ -1,6 +1,6 @@
 ---
 - name: Deploy WAR file to Tomcat
-  hosts: tomcat-dev
+  hosts: tomcat
   become: yes
   tasks:
     - name: Copy WAR file to Tomcat webapps directory
