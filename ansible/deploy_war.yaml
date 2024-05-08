@@ -1,0 +1,13 @@
+---
+- name: Deploy WAR file to Tomcat
+  hosts: tomcat-dev
+  become: yes
+  tasks:
+    - name: Copy WAR file to Tomcat webapps directory
+      copy:
+        src: "target/{{ war_file }}"
+        dest: "{{ tomcat_dir }}/webapps/{{ war_file }}"
+        remote_src: yes
+
+    - name: Restart Tomcat
+      shell: "{{ tomcat_dir }}/bin/shutdown.sh && {{ tomcat_dir }}/bin/startup.sh"
